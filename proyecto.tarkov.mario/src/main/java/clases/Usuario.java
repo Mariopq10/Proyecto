@@ -39,7 +39,7 @@ public class Usuario extends ElementoConNombre {
 		columnasSelect.add("contrasena");
 		HashMap<String, Object> restricciones = new HashMap<>();
 		restricciones.put("email", email);
-		ArrayList<Object> consulta = DAO.consultar("cliente", columnasSelect, restricciones);
+		ArrayList<Object> consulta = DAO.consultar("usuario", columnasSelect, restricciones);
 		if (consulta.isEmpty()) {
 			throw new UsuarioNoExisteException("No existe el cliente");
 		} else if (!consulta.get(3).equals(contrasena)) {

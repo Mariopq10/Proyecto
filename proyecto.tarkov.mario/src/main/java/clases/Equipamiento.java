@@ -1,13 +1,23 @@
 package clases;
 
 public class Equipamiento extends ElementoConNombre {
+	private float peso;
+	private int precio;
+	
 
-	public Equipamiento(String nombre) {
+	public Equipamiento(String nombre, float peso, int precio) {
 		super(nombre);
-		// TODO Auto-generated constructor stub
+		this.peso = peso;
+		this.precio = precio;
 	}
 
-	private float peso;
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
 
 	public float getPeso() {
 		return peso;

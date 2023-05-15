@@ -15,9 +15,10 @@ public class Arma extends Equipamiento {
 	private ModoDisparo modoDisparo;
 	private HashSet<Acople> acoples;
 
-	public Arma(String nombre, String descripcion, String calibre, Municion municion, Float retroceso, Short rpm,
-			Short alcance, byte ergonomia, ModoDisparo modoDisparo, HashSet<Acople> acoples) {
-		super(nombre);
+	public Arma(String nombre, float peso, int precio, String descripcion, String calibre, Municion municion,
+			Float retroceso, Short rpm, Short alcance, byte ergonomia, ModoDisparo modoDisparo,
+			HashSet<Acople> acoples) {
+		super(nombre, peso, precio);
 		this.descripcion = descripcion;
 		this.calibre = calibre;
 		this.municion = municion;

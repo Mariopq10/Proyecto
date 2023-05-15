@@ -2,13 +2,16 @@ package vistas;
 
 import javax.swing.JFrame;
 
+import clases.Usuario;
 import vistas.PantallaLogin;
 import vistas.PantallaRegistro;
 
 public class Ventana extends JFrame {
+	private Usuario usuarioLogin;
+
 	public Ventana() {
-		this.setSize(600, 500);
-		this.setTitle("Programita");
+		this.setSize(1280, 720);
+		this.setTitle("Tarkov Builder");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaLogin(this));

@@ -8,8 +8,9 @@ public class Municion extends Equipamiento {
 	private Byte penetracion;
 	private String[] compatibilidad;
 
-	public Municion(String nombre, String tipo, Byte dano, Byte penetracion, String[] compatibilidad) {
-		super(nombre);
+	public Municion(String nombre, float peso, int precio, String tipo, Byte dano, Byte penetracion,
+			String[] compatibilidad) {
+		super(nombre, peso, precio);
 		this.tipo = tipo;
 		this.dano = dano;
 		this.penetracion = penetracion;

@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class Acople extends Equipamiento {
 	private String[] compatibilidad;
 
-	public Acople(String nombre, String[] compatibilidad) {
-		super(nombre);
+	public Acople(String nombre, float peso, int precio, String[] compatibilidad) {
+		super(nombre, peso, precio);
 		this.compatibilidad = compatibilidad;
 	}
 

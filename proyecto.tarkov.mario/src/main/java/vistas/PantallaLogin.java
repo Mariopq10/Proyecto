@@ -30,27 +30,29 @@ public class PantallaLogin extends JPanel {
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setBackground(new Color(192, 192, 192));
 		setLayout(null);
-		this.setSize(600, 500);
+		this.setSize(1280, 720);
 
 		JLabel labelUsuario = new JLabel("Usuario");
 		labelUsuario.setForeground(new Color(128, 113, 85));
-		labelUsuario.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
-		labelUsuario.setBounds(31, 213, 93, 23);
+		labelUsuario.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		labelUsuario.setBounds(44, 212, 146, 28);
 		add(labelUsuario);
 
 		userField = new JTextField();
-		userField.setBounds(31, 251, 104, 20);
+		userField.setBackground(new Color(219, 213, 200));
+		userField.setBounds(44, 251, 189, 20);
 		add(userField);
 		userField.setColumns(10);
 
 		JLabel labelContrasena = new JLabel("Contrasena");
 		labelContrasena.setForeground(new Color(128, 113, 85));
-		labelContrasena.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
-		labelContrasena.setBounds(31, 298, 79, 14);
+		labelContrasena.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		labelContrasena.setBounds(44, 314, 79, 14);
 		add(labelContrasena);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(31, 323, 104, 20);
+		passwordField.setBackground(new Color(219, 213, 200));
+		passwordField.setBounds(44, 350, 189, 20);
 		add(passwordField);
 
 		JButton botonLogin = new JButton("Login");
@@ -65,11 +67,11 @@ public class PantallaLogin extends JPanel {
 		botonLogin.setToolTipText("Pincha para iniciar");
 		botonLogin.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		botonLogin.setBackground(new Color(192, 192, 192));
-		botonLogin.setBounds(29, 388, 120, 81);
+		botonLogin.setBounds(100, 555, 120, 81);
 		add(botonLogin);
 
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(226, 475, 146, 14);
+		progressBar.setBounds(569, 695, 146, 14);
 		add(progressBar);
 
 		JButton botonRegistro = new JButton("Registro");
@@ -82,12 +84,12 @@ public class PantallaLogin extends JPanel {
 		botonRegistro.setToolTipText("Pincha para registrarte");
 		botonRegistro.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		botonRegistro.setBackground(Color.LIGHT_GRAY);
-		botonRegistro.setBounds(443, 388, 120, 81);
+		botonRegistro.setBounds(1081, 555, 120, 81);
 		add(botonRegistro);
 
 		JLabel fondoLogin = new JLabel("New label");
-		fondoLogin.setIcon(new ImageIcon("C:\\Users\\1DAM&&1DAW\\Downloads\\useclogo.png"));
-		fondoLogin.setBounds(0, 0, 600, 500);
+		fondoLogin.setIcon(new ImageIcon("C:\\Users\\mario\\Documents\\GitHub\\Proyecto\\proyecto.tarkov.mario\\imagenes\\useclogo.jpg"));
+		fondoLogin.setBounds(0, 0, 1280, 720);
 		add(fondoLogin);
 		this.setVisible(true);
 
