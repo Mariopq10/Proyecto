@@ -7,7 +7,7 @@ import vistas.PantallaLogin;
 import vistas.PantallaRegistro;
 
 public class Ventana extends JFrame {
-	private Usuario usuarioLogin;
+	protected Usuario usuarioLogin;
 
 	public Ventana() {
 		this.setSize(1280, 720);

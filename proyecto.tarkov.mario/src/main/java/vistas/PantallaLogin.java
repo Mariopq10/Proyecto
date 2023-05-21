@@ -7,9 +7,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JToggleButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
+
+import clases.Usuario;
+import excepciones.ContrasenaInvalidaException;
+import excepciones.UsuarioNoExisteException;
+import vistas.PantallaListado;
+
 import javax.swing.JProgressBar;
 import java.awt.Font;
 import javax.swing.JSlider;
@@ -17,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 public class PantallaLogin extends JPanel {
 	private JTextField userField;
@@ -59,9 +67,28 @@ public class PantallaLogin extends JPanel {
 		botonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String usuario = userField.getText();
-				String contrasena = new String(passwordField.getPassword());
-				System.out.println(usuario + " : " + contrasena);
+				try {
+					String usuario = userField.getText();
+					String contrasena = new String(passwordField.getPassword());
+					ventana.usuarioLogin = new Usuario(usuario,contrasena);
+					JOptionPane.showMessageDialog(ventana, "Bienvenido/a, " + ventana.usuarioLogin.getNombre(),
+							"Inicio de sesion correcto", JOptionPane.INFORMATION_MESSAGE);
+					ventana.cambiarAPantalla(PantallaListado.class);
+
+				} catch (UsuarioNoExisteException e1) {
+					JOptionPane.showMessageDialog(ventana, "No existe el cliente", "Inicio de sesion incorrecto",
+							JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(ventana, "No hay conexion con la base de datoss",
+							"Inicio de sesion incorrecto", JOptionPane.ERROR_MESSAGE);
+
+					e1.printStackTrace();
+				} catch (ContrasenaInvalidaException e1) {
+					JOptionPane.showMessageDialog(ventana, "Contrasena incorrecta", "Inicio de sesion incorrecto",
+							JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
 			}
 		});
 		botonLogin.setToolTipText("Pincha para iniciar");
@@ -88,7 +115,8 @@ public class PantallaLogin extends JPanel {
 		add(botonRegistro);
 
 		JLabel fondoLogin = new JLabel("New label");
-		fondoLogin.setIcon(new ImageIcon("C:\\Users\\mario\\Documents\\GitHub\\Proyecto\\proyecto.tarkov.mario\\imagenes\\useclogo.jpg"));
+		fondoLogin.setIcon(new ImageIcon(
+				"C:\\Users\\mario\\Documents\\GitHub\\Proyecto\\proyecto.tarkov.mario\\imagenes\\useclogo.jpg"));
 		fondoLogin.setBounds(0, 0, 1280, 720);
 		add(fondoLogin);
 		this.setVisible(true);

@@ -1,7 +1,7 @@
 package clases;
 
 public class ElementoConNombre {
-	private String nombre;
+	protected String nombre;
 
 	public ElementoConNombre(String nombre) {
 		super();
