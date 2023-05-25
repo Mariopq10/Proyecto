@@ -3,6 +3,7 @@ package vistas;
 import javax.swing.JFrame;
 
 import clases.Usuario;
+import vistas.PantallaListado;
 import vistas.PantallaLogin;
 import vistas.PantallaRegistro;
 
@@ -25,6 +26,9 @@ public class Ventana extends JFrame {
 		}
 		if (clase.equals(PantallaRegistro.class)) {
 			this.setContentPane(new PantallaRegistro(this));
+		}
+		if (clase.equals(PantallaListado.class)) {
+			this.setContentPane(new PantallaListado(this));
 		}
 		this.getContentPane().setVisible(true);
 	}

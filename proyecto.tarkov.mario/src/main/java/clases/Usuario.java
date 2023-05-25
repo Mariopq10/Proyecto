@@ -27,7 +27,7 @@ public class Usuario extends ElementoConNombre {
 		cols.put("email", this.email = email);
 		cols.put("nombre", this.getNombre());
 		cols.put("password", contrasena);
-		DAO.insertar("usuario", cols);
+		DAO.insertar("usuarios", cols);
 	}
 
 	public Usuario(String nombre, String contrasena)
@@ -38,9 +38,9 @@ public class Usuario extends ElementoConNombre {
 		columnasSelect.add("password");
 		HashMap<String, Object> restricciones = new HashMap<>();
 		restricciones.put("nombre", nombre);
-		ArrayList<Object> consulta = DAO.consultar("usuario", columnasSelect, restricciones);
+		ArrayList<Object> consulta = DAO.consultar("usuarios", columnasSelect, restricciones);
 		if (consulta.isEmpty()) {
-			throw new UsuarioNoExisteException("No existe el cliente");
+			throw new UsuarioNoExisteException("No existe el usuario");
 		} else if (!consulta.get(1).equals(contrasena)) {
 			throw new ContrasenaInvalidaException("La contrasena es invalida");
 		} else {

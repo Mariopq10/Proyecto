@@ -19,52 +19,100 @@ import vistas.PantallaListado;
 
 import javax.swing.JProgressBar;
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JSlider;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class PantallaLogin extends JPanel {
+	private Ventana ventana;
 	private JTextField userField;
 	private JPasswordField passwordField;
-	private Ventana ventana;
 
+	@Override
+	protected void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		try {
+			BufferedImage fondo = ImageIO.read(new File("./imagenes/useclogo.jpg"));
+			
+			g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), new Color(0, 0, 0), null);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
 	public PantallaLogin(Ventana v) {
 		this.ventana = v;
 
 		setForeground(Color.BLACK);
 		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setBackground(new Color(192, 192, 192));
-		setLayout(null);
 		this.setSize(1280, 720);
-
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{100, 180, 716, 180, 100, 0};
+		gridBagLayout.rowHeights = new int[]{192, 30, 30, 29, 30, 30, 30, 24, 36, 117, 81, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
 		JLabel labelUsuario = new JLabel("Usuario");
 		labelUsuario.setForeground(new Color(128, 113, 85));
 		labelUsuario.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
-		labelUsuario.setBounds(44, 212, 146, 28);
-		add(labelUsuario);
-
+		GridBagConstraints gbc_labelUsuario = new GridBagConstraints();
+		gbc_labelUsuario.anchor = GridBagConstraints.WEST;
+		gbc_labelUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_labelUsuario.gridx = 1;
+		gbc_labelUsuario.gridy = 1;
+		add(labelUsuario, gbc_labelUsuario);
+		
 		userField = new JTextField();
 		userField.setBackground(new Color(219, 213, 200));
-		userField.setBounds(44, 251, 189, 20);
-		add(userField);
+		userField.setForeground(new Color(0, 0, 0));
+		userField.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
+		GridBagConstraints gbc_userField = new GridBagConstraints();
+		gbc_userField.insets = new Insets(0, 0, 5, 5);
+		gbc_userField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_userField.gridx = 1;
+		gbc_userField.gridy = 2;
+		add(userField, gbc_userField);
 		userField.setColumns(10);
-
-		JLabel labelContrasena = new JLabel("Contrasena");
+		
+		JLabel labelContrasena = new JLabel("Contraseña");
 		labelContrasena.setForeground(new Color(128, 113, 85));
 		labelContrasena.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
-		labelContrasena.setBounds(44, 314, 79, 14);
-		add(labelContrasena);
-
+		GridBagConstraints gbc_labelContrasena = new GridBagConstraints();
+		gbc_labelContrasena.anchor = GridBagConstraints.WEST;
+		gbc_labelContrasena.insets = new Insets(0, 0, 5, 5);
+		gbc_labelContrasena.gridx = 1;
+		gbc_labelContrasena.gridy = 3;
+		add(labelContrasena, gbc_labelContrasena);
+		
 		passwordField = new JPasswordField();
 		passwordField.setBackground(new Color(219, 213, 200));
-		passwordField.setBounds(44, 350, 189, 20);
-		add(passwordField);
-
-		JButton botonLogin = new JButton("Login");
-		botonLogin.addMouseListener(new MouseAdapter() {
+		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordField.gridx = 1;
+		gbc_passwordField.gridy = 4;
+		add(passwordField, gbc_passwordField);
+		
+		JButton buttonLogin = new JButton("Login");
+		buttonLogin.setBackground(Color.LIGHT_GRAY);
+		buttonLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
@@ -80,7 +128,7 @@ public class PantallaLogin extends JPanel {
 							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(ventana, "No hay conexion con la base de datoss",
+					JOptionPane.showMessageDialog(ventana, "No hay conexion con la base de datos",
 							"Inicio de sesion incorrecto", JOptionPane.ERROR_MESSAGE);
 
 					e1.printStackTrace();
@@ -91,34 +139,29 @@ public class PantallaLogin extends JPanel {
 				}
 			}
 		});
-		botonLogin.setToolTipText("Pincha para iniciar");
-		botonLogin.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
-		botonLogin.setBackground(new Color(192, 192, 192));
-		botonLogin.setBounds(100, 555, 120, 81);
-		add(botonLogin);
-
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(569, 695, 146, 14);
-		add(progressBar);
-
-		JButton botonRegistro = new JButton("Registro");
-		botonRegistro.addMouseListener(new MouseAdapter() {
+		buttonLogin.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		GridBagConstraints gbc_buttonLogin = new GridBagConstraints();
+		gbc_buttonLogin.fill = GridBagConstraints.BOTH;
+		gbc_buttonLogin.insets = new Insets(0, 0, 0, 5);
+		gbc_buttonLogin.gridx = 1;
+		gbc_buttonLogin.gridy = 10;
+		add(buttonLogin, gbc_buttonLogin);
+		
+		JButton buttonRegistro = new JButton("Registro");
+		buttonRegistro.setBackground(Color.LIGHT_GRAY);
+		buttonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.cambiarAPantalla(PantallaRegistro.class);
 			}
 		});
-		botonRegistro.setToolTipText("Pincha para registrarte");
-		botonRegistro.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
-		botonRegistro.setBackground(Color.LIGHT_GRAY);
-		botonRegistro.setBounds(1081, 555, 120, 81);
-		add(botonRegistro);
-
-		JLabel fondoLogin = new JLabel("New label");
-		fondoLogin.setIcon(new ImageIcon(
-				"C:\\Users\\mario\\Documents\\GitHub\\Proyecto\\proyecto.tarkov.mario\\imagenes\\useclogo.jpg"));
-		fondoLogin.setBounds(0, 0, 1280, 720);
-		add(fondoLogin);
+		buttonRegistro.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		GridBagConstraints gbc_buttonRegistro = new GridBagConstraints();
+		gbc_buttonRegistro.fill = GridBagConstraints.BOTH;
+		gbc_buttonRegistro.insets = new Insets(0, 0, 0, 5);
+		gbc_buttonRegistro.gridx = 3;
+		gbc_buttonRegistro.gridy = 10;
+		add(buttonRegistro, gbc_buttonRegistro);
 		this.setVisible(true);
 
 	}

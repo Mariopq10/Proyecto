@@ -11,7 +11,6 @@ public class Main {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		Ventana v = new Ventana();
-		PantallaLogin p = new PantallaLogin(v);
 	}
 
 }
